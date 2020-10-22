@@ -18,19 +18,20 @@
   <body>
     <div class="container">
       <div class="jumbotron">
-        <h1>Hot Restaurant</h1>
-        <h3>Make your reservation</h3>
+        <h1 class="text-center">Hot Restaurant</h1>
         <hr />
-        <a href="/"
-          ><button class="btn btn-danger btn-lg">
-            <span class="fa fa-eye"></span> View Tables
-          </button></a
-        >
-        <a href="/"
-          ><button class="btn btn-danger btn-lg">
-            <span class="fa fa-eye"></span> Home
-          </button></a
-        >
+        <h3 class="text-center pb-3">Make your reservation</h3>
+        <div class="text-center">
+          <a href="table.html"
+            ><button class="btn btn-primary btn-lg tableBtn">
+              <span class="fa fa-list"></span> View Tables
+            </button></a
+          >
+          <a href="home.html"
+            ><button class="btn btn-danger btn-lg">
+              <span class="fa fa-home"></span></button
+          ></a>
+        </div>
       </div>
       <div class="row">
         <div class="col-12">
@@ -46,28 +47,28 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="role">Phone Number</label>
+                  <label for="phone">Phone Number</label>
                   <input type="text" class="form-control" id="phone" />
                 </div>
 
                 <div class="form-group">
-                  <label for="age">Email</label>
+                  <label for="email">Email</label>
                   <input type="text" class="form-control" id="email" />
                 </div>
 
                 <div class="form-group">
-                  <label for="force-points">Unique ID</label>
+                  <label for="id">Unique ID</label>
                   <input type="text" class="form-control" id="id" />
                 </div>
               </form>
               <br />
-              <div class="text-right">
+              <div class="text-left">
                 <button
                   type="submit"
                   class="btn btn-primary btn-md"
                   id="add-btn"
                 >
-                  <span class="fa fa-fire"></span> Submit
+                  Submit
                 </button>
               </div>
             </div>
