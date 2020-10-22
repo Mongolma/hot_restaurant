@@ -38,7 +38,18 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3><strong>Current Reservation</strong></h3>
+              <h3><strong>Current list</strong></h3>
+            </div>
+            <div class="card-body">
+              <h2 id="name"></h2>
+              <div id="info">
+                <h3><strong>Phone:</strong> <span id="phone"></span></h3>
+                <h3><strong>Email:</strong> <span id="email"></span></h3>
+                <h3>
+                  <strong>Unique Id:</strong>
+                  <span id="id"></span>
+                </h3>
+              </div>
             </div>
           </div>
         </div>
@@ -47,9 +58,63 @@
             <div class="card-header">
               <h3><strong>Waiting list</strong></h3>
             </div>
+            <div class="card-body">
+              <h2 id="name"></h2>
+              <div id="info">
+                <h3><strong>Phone:</strong> <span id="phone"></span></h3>
+                <h3><strong>Email:</strong> <span id="email"></span></h3>
+                <h3>
+                  <strong>Unique Id:</strong>
+                  <span id="id"></span>
+                </h3>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <script type="text/javascript">
+      function tableList() {
+        $.ajax({ url: "/api/tables", method: "GET" }).then(function (
+          tableData
+        ) {
+          for (let i = 0; i < tableData.length; i++) {
+            list.append(
+              $("<h2>").text("Table #" + (i + 1)),
+              $("<h2>"),
+              $("<h2>").text("ID: " + waitData[i].id),
+              $("<h2>").text("Name: " + waitData[i].name),
+              $("<h2>").text("Email: " + waitData[i].email),
+              $("<h2>").text("Phone: " + waitData[i].phone)
+            );
+            tableList.append(list);
+          }
+        });
+      }
+
+      function waitList() {
+        $.ajax({
+          url: "/api/waitList",
+          method: "GET",
+        }).then(function (waitData) {
+          for (let i = 0; i < waitData.length; i++) {
+            let waitList = $("#waitList");
+            let listItem = $("<li class='list-group-item mt-4'>");
+            list.append(
+              $("<h2>").text("Table #"(i + 1)),
+              $("<hr>"),
+              $("<h2>").text("ID: " + waitData[i].id),
+              $("<h2>").text("Name: " + waitData[i].name),
+              $("<h2>").text("Email: " + waitData[i].email),
+              $("<h2>").text("Phone: " + waitData[i].phone)
+            );
+            waitList.append(listItem);
+          }
+        });
+      }
+      tableList();
+      waitList();
+    </script>
   </body>
 </html>
