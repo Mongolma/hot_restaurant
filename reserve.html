@@ -77,6 +77,53 @@
       </div>
     </div>
     <script type="text/javascript">
+      function runTable() {
+        //Here we get the loaction of the root page
+        //We use this instead of explicity saying the URL is localhost: because the url will change when we deploye
+        var currentURL = window.location.origin;
+
+        $.ajax({ url: currentURL + "/api/tables", method: "GET" }).done(
+          function (tableData) {
+            for (var i = 0; i < tableData.length; i++) {
+              var tableSection = $("<div>");
+              tableSection.addClass("well");
+              tableSection.attr("id", "tableWell-" + i + 1);
+              $("#tableSection").append(tableSection);
+              var tableNumber = i + 1;
+            }
+            $("#tableWell-" + i + 1).append(
+              '<h2><span class="label label-primary">' +
+                tableNumber +
+                "</span> | " +
+                tableData[i].id +
+                "</h2>"
+            );
+          }
+        );
+      }
+
+      function waitList() {
+        var currentUrl = window.location.origin;
+        $.ajax({ url: currentUrl + "/api/waitlist", method: "GET" }).done(
+          function (waitlistData) {
+            for (var i = 0; i < waitlistData.length; i++) {
+              var waitListSection = $("<div>");
+              waitListSection.addClass("well");
+              waitListSection.attr("id", "waitlistWell-" + i + 1);
+              $("#waitlistSection".append(waitListSection));
+              var tableNumber = i + 1;
+              $("#waitlistWell-" + i + 1).append(
+                '<h2><span class="label label-primary">' +
+                  tableNumber +
+                  "</span>|" +
+                  waitlistData[i].id +
+                  "</h2>"
+              );
+            }
+          }
+        );
+      }
+
       $("#add-btn").on("click", function (event) {
         event.preventDefault();
         var waitlist = {
