@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tables</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> <!-- CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- CSS -->
+  <script src="https://code.jquery.com/jquery.js"></script> <!-- JQ -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!--JS -->
+</head>
+
+<body>
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- jumbotron -->
+    <div class="jumbotron">
+      <h1 class="text-center"> Hot Restaurant</h1>
+      <hr>
+      <h2 class="text-center">View Tables</h2>
+      <br>
+
+      <div class="text-center">
+        <a href="/reserve">
+          <button class="btn btn-lg btn-danger">
+                Make Reservation
+          </button>
+        </a>
+        <a href="/">
+          <button class="btn btn-lg btn-default">
+            <span class="fa fa-home"></span>
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <!-- jumbotron end -->
+
+ 
+    <div class="row" id="reservations">
+      <div class="card col-lg-12" id="currentReservations">
+        <br><h4>Current Reservations</h4><br>
+      </div>
+    </div>
+    
+    <br>
+    <div class="row" id="reservations">
+      <div class="card col-lg-12" id="waitingList">
+        <br><h4>Waiting List</h4><br>
+      </div>
+    </div><br>
+
+
+
+    <footer class="footer">
+      <div class="container">
+        <p><a href="/api/tables">API Reserved Tables Link</a> | <a href="/api/waitlist">API Waiting List</a></p>
+      </div><br>
+    </footer>
+  </div>
+</body>
+
+</html>
+<script type="text/javascript">
+
+  $.get("/api/tables", function (tablelist) {
+    if (tablelist.length > 0) {
+      tables = tablelist.slice(0,5);
+      for (var i = 0; i < tables.length; i++) {
+        var customerName = tables[i].customerName;
+        var phoneNumber = tables[i].phoneNumber;
+        var customerEmail = tables[i].customerEmail;
+        var resId = tables[i].customerID;
+
+        let html1 = `
+        <div> <span style= "border-right:2px solid black;">Name: ${customerName}&nbsp;&nbsp;</span>&nbsp;&nbsp; 
+              <span style= "border-right:2px solid black;">Phone: ${phoneNumber}&nbsp;&nbsp;</span>&nbsp;&nbsp; 
+              <span style= "border-right:2px solid black;">Email: ${customerEmail}&nbsp;&nbsp;</span>&nbsp;&nbsp;  
+              <span >ID: ${resId}</span> 
+        </div><br>`
+
+        $("#currentReservations").append(`${html1}`);
+      }
+    }
+    if(tablelist.length > 5){
+      for (var i = 5; i < tablelist.length; i++) {
+        var customerName = tablelist[i].customerName;
+        var phoneNumber = tablelist[i].phoneNumber;
+        var customerEmail = tablelist[i].customerEmail;
+        var resId = tablelist[i].customerID;
+
+        let html2 = `
+        <div> <span style= "border-right:2px solid black;">Name: ${customerName}&nbsp;&nbsp;</span>&nbsp;&nbsp; 
+              <span style= "border-right:2px solid black;">Phone: ${phoneNumber}&nbsp;&nbsp;</span>&nbsp;&nbsp; 
+              <span style= "border-right:2px solid black;">Email: ${customerEmail}&nbsp;&nbsp;</span>&nbsp;&nbsp;  
+              <span >ID: ${resId}</span> 
+        </div><br>`
+
+        $("#waitingList").append(`${html2}`);
+      }
+    }
+
+  });
+</script>

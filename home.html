@@ -1,9 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-  </head>
-  <body></body>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hot Restaurant</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="jumbotron">
+      <h1 class="text-center"> Hot Restaurant</h1>
+      <hr>
+      <h3 class="text-center">We only have 5 tables available! <br>Book your seat, otherwise you will be in the waiting list!</h3>
+      <br>
+
+      <div class="text-center">
+         <a href="/tables"><button type="button" class="btn btn-lg btn-primary">View Tables</button></a>
+         <a href="/reserve"><button type="button" class="btn btn-lg btn-danger">Make Reservation</button></a>
+      </div>
+
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p><a href="/api/tables">API Reserved Tables Link</a> | <a href="/api/waitlist">API Waiting List</a></p>
+      </div>
+    </footer>
+  </div>
+</body>
+
 </html>
